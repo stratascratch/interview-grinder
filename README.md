@@ -2,97 +2,88 @@
   <img src="assets/cover.png" alt="StrataScratch Interview Grinder" width="600">
 </p>
 
-# StrataScratch Skills
+# Interview Grinder
 
-Skills are folders of instructions, scripts, and resources that AI agents load dynamically to improve performance on data science interview preparation tasks. Each skill teaches the agent how to complete a specific task in a repeatable way — from generating interview questions to creating datasets with edge cases.
+An agent skill that generates complete data science interview questions — exactly as they appear on the [StrataScratch](https://www.stratascratch.com) platform. Title, question, and dataset preview, ready to solve.
 
-> **Note:** These skills follow the open [Agent Skills](https://agentskills.io) standard and are compatible with Claude Code, OpenAI Codex, Gemini CLI, Cursor, and other agent platforms.
+Compatible with **Claude Code**, **OpenAI Codex**, **Gemini CLI**, **Cursor**, and other agents that support the open [Agent Skills](https://agentskills.io) standard.
 
-## About This Repository
+## What It Does
 
-This repository contains StrataScratch's official collection of agent skills for data science interview preparation. These skills power the workflows behind [StrataScratch](https://www.stratascratch.com) — the platform where data scientists practice real interview questions from top tech companies.
+The Interview Grinder creates original, interview-ready questions with:
 
-### Available Skills
+- **Title** — Short, descriptive name (e.g., "Top Salaries by Department")
+- **Question** — Business-framed problem with clear output requirements
+- **Dataset Preview** — Table schemas with sample rows, exactly as shown on the platform
 
-| Skill | Description |
-|-------|-------------|
-| [strata-interview-grinder](./skills/strata-interview-grinder/) | Generates complete data science interview questions with datasets in platform interview mode — title, question, and data preview, ready to solve |
+Questions are calibrated against a bank of 100 real StrataScratch questions for style, difficulty, and structure — but every output is 100% original.
 
 ## Quick Start
 
-### Claude Code (Plugin Marketplace)
-
 ```bash
-# Register the marketplace
-/plugin marketplace add stratascratch/skills
+# npx (any agent)
+npx skills add gencay-strata/interview-grinder
 
-# Install all skills
-/plugin install interview-skills@stratascratch-skills
+# Claude Code
+/plugin marketplace add gencay-strata/interview-grinder
 ```
 
-### npx skills CLI
+Or clone manually:
 
 ```bash
-# Install all skills
-npx skills add stratascratch/skills
-
-# Install a specific skill
-npx skills add stratascratch/skills --skill strata-interview-grinder
-```
-
-### Manual Installation
-
-```bash
-# Clone and copy to your skills directory
-git clone https://github.com/stratascratch/skills.git
+git clone https://github.com/gencay-strata/interview-grinder.git
 cp -r skills/strata-interview-grinder ~/.claude/skills/
 ```
 
-After installing, just describe what you want in plain English:
+## Usage
 
-- *"Generate an interview question about window functions"*
-- *"Give me a hard SQL question about customer retention"*
-- *"Grind a question"*
+Just ask naturally:
 
-The agent will automatically detect and use the right skill.
+```
+Generate an interview question
+```
+
+```
+Give me a hard SQL question about customer churn
+```
+
+```
+Grind a question about window functions
+```
+
+The skill activates automatically when it detects interview question creation intent.
+
+### Hotkeys
+
+After each question, use these shortcuts:
+
+| Key | Action |
+|-----|--------|
+| **Q** 🔄 | Generate a brand new question |
+| **R** ✏️ | Revise a specific section |
+| **D** 📊 | Regenerate dataset with different data |
+
+## Interview Mode
+
+This skill operates in **interview mode** — it presents the question and data, you solve it. Solutions, hints, and edge case explanations are never shown. Edge cases are silently embedded in the dataset for you to discover.
 
 ## Skill Format
 
-Each skill is a self-contained folder:
+Each skill follows the open [Agent Skills](https://agentskills.io) standard:
 
 ```
-skill-name/
-├── SKILL.md          # Instructions and metadata (required)
-├── assets/           # Reference data, CSVs (optional)
-└── scripts/          # Helper scripts (optional)
+skills/strata-interview-grinder/
+├── SKILL.md       # Instructions and metadata
+├── README.md      # Documentation
+└── assets/        # Reference data (question bank CSV)
 ```
-
-The `SKILL.md` file contains YAML frontmatter (name + description) followed by the instructions the agent follows when the skill is active. For the full specification, see the [Agent Skills Spec](https://agentskills.io).
-
-## Creating Custom Skills
-
-Want to contribute a skill? Use the [template](./template/) as a starting point:
-
-```yaml
----
-name: my-skill-name
-description: A clear description of what this skill does and when to use it.
----
-
-# My Skill Name
-
-Instructions for the agent go here...
-```
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 
 ## Links
 
 - [StrataScratch Platform](https://www.stratascratch.com)
 - [Agent Skills Specification](https://agentskills.io)
 - [Using Skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude)
-- [Creating Custom Skills](https://support.claude.com/en/articles/12512198-creating-custom-skills)
 
 ## License
 
-Skills in this repository are released under the [Apache 2.0 License](./LICENSE) unless otherwise noted in individual skill directories.
+Released under the [Apache 2.0 License](./LICENSE).
