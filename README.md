@@ -22,16 +22,13 @@ Questions are calibrated against a bank of 100 real StrataScratch questions for 
 
 ```bash
 # npx (any agent)
-npx skills add gencay-strata/interview-grinder
-
-# Claude Code
-/plugin marketplace add gencay-strata/interview-grinder
+npx skills add stratascratch/interview-grinder
 ```
 
 Or clone manually:
 
 ```bash
-git clone https://github.com/gencay-strata/interview-grinder.git
+git clone https://github.com/stratascratch/interview-grinder.git
 cp -r skills/strata-interview-grinder ~/.claude/skills/
 ```
 
